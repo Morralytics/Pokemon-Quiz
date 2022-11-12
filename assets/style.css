@@ -7,8 +7,8 @@ body {
     background:#b1cbbb
 }
 
-.introduction_page {
-  /* display: none;   */
+.introduction-page {
+  display: none;  
 }
 
 .headerInfo {
@@ -24,8 +24,9 @@ body {
     background-color: #eea29a;
 }
 
-.introduction_box,
-.start_quiz button{
+.introduction-box,
+.start-quiz,
+.container{
     background-color:#eea29a;
     border-radius: 15px;
     width: 50%;
@@ -38,12 +39,30 @@ body {
     font-size: 24px;
 }
 
-.start_quiz button {
+.start-quiz{
     border-style: none;
     top: 65%;
     width: 15%;
 }
 
-.start_quiz button:hover {
+.start-quiz:hover {
     border-style: solid;
+}
+
+.question-container div {
+    background-color: white;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: transparent;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.question-container div:hover {
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
 }
