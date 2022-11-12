@@ -66,3 +66,7 @@ body {
     border-style: solid;
     border-color: black;
 }
+
+#question-1 {
+    display: none;
+}
