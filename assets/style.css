@@ -1,3 +1,6 @@
+/* Some style sheets have nothing in them but some commented code
+These represent what will be injected through JavaScript when needed */
+
 *{
     margin: 0;
     font-family: 'Courier New', Courier, monospace;

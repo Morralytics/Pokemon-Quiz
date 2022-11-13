@@ -1,3 +1,4 @@
+// Variables with references to what will be used in the HTML
 var startQuizButton = document.querySelector(".start-quiz");
 var introductionPage = document.querySelector(".introduction-page");
 var introductionBox = document.querySelector(".intruduction-box");
@@ -10,8 +11,8 @@ var nextButton = document.querySelector(".next-button");
 
 var timeRemaining = document.getElementById("interval").innerHTML;
 
+// Global countings to keep track of questions and score
 var questionCount = 0;
-
 var scoreCount = 0;
 var finalScoreCount = 0;
 
@@ -168,34 +169,17 @@ startQuizButton.addEventListener("click", function () {
         var disableBullet3 = document.querySelector(".thirdBullet");
         var endForm = document.querySelector(".endForm");
 
-        var newForm = document.createElement("form");
-        newForm.setAttribute("method", "post")
-        newForm.setAttribute("action", "submit.php")
-        
-        var inputEl = document.createElement("input");
-        inputEl.setAttribute("type", "text");
-        inputEl.setAttribute("name", "initials");
-
-        var submitEl = document.createElement("input");
-        submitEl.setAttribute("type", "submit");
-        submitEl.setAttribute("value", "Submit")
-
-
+        // Setting the correct attributes for displaying/hidding sections
         disableQuizScreen.setAttribute("style", "display:none;");
         disableBullet2.setAttribute("style", "display:none;");
         disableBullet3.setAttribute("style", "display:none;");
         endForm.setAttribute("style", "display:contents;")
 
-
+        // Final screen text
         finalScreenHeader.textContent = "Quiz Over!";
         finalScreenBody.textContent = "Your final score is: " + finalScoreCount;
 
+        // Stops the running clock
         clearInterval(timerInterval);
-
-        // document.getElementById("introduction-box").appendChild(newForm);   
-        submitEl.appendChild(newForm);
-        inputEl.appendChild(newForm);
-        introductionPage.appendChild(newForm);
     }
-
 });
