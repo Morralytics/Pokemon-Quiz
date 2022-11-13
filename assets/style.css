@@ -7,8 +7,8 @@ body {
     background:#b1cbbb
 }
 
-.introduction-page {
-  /* display: none;   */
+.introduction-box form{
+    display: none;
 }
 
 .headerInfo {
@@ -19,7 +19,9 @@ body {
 
 .score,
 .time,
-.next {
+.next,
+#submitButton,
+#inputType {
     border-radius: 15px;
     padding: 10px;
     background-color: #eea29a;
@@ -44,6 +46,7 @@ body {
     border-style: none;
     top: 65%;
     width: 15%;
+    /* display: none; */
 }
 
 .start-quiz:hover {
@@ -74,4 +77,25 @@ body {
     bottom: 0;
     margin-left: 46.8%;
     margin-bottom: 14%;
+}
+
+.options .optionItm.correct {
+    background-color: #acdbeb;
+}
+
+.options .optionItm.incorrect {
+    background-color: #c94c4c;
+}
+
+.options .optionItm.disabled {
+    pointer-events: none;
+}
+
+.main-display {
+    /* display: none; */
+}
+
+#submitButton,
+#inputType {
+    background-color: white;
 }

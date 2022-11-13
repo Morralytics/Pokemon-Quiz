@@ -8,36 +8,44 @@
     <title>Coding Quiz</title>
   </head>
   <body>
-
     <header>
       <div class="headerInfo">
-        <div class="score"><h2 class="header-score">Score: 56</h2></div>
-        <div class="time"><h2 class="header-time">Time: <span id="interval">60</span></h2></div>
+        <div class="score"><h2 class="header-score">Score: 0</h2></div>
+        <div class="time">
+          <h2 class="header-time">Time: <span id="interval">60</span></h2>
+        </div>
       </div>
     </header>
-<!-- The introduction page that breifly discusses how the quiz will form -->
+    <!-- The introduction page that breifly discusses how the quiz will form -->
     <div class="introduction-page">
       <div class="introduction-box">
         <h2>Click Start Quiz!</h2>
-          <li>You will be asked a series of questions</li>
-          <li>If you get the answer right, you will be given points</li>
-          <li>If you get the answer wrong, you will lose time</li>
+        <li class="firstBullet">You will be asked a series of questions</li>
+        <li class="secondBullet">If you get the answer right, you will be given points</li>
+        <li class="thirdBullet">If you get the answer wrong, you will lose time</li>
+        <form input="text" class="endForm">
+          <label for="initials">Enter Initials: </label>
+          <input type="text" id="inputType">
+          <input type="submit" id="submitButton">
+        </form>
       </div>
 
       <button class="start-quiz">Start Quiz</button>
     </div>
 
-<!-- Question section -->
+    <!-- Question section -->
 
-<!-- First question completted and commented out for ease of debugging multiple questions -->
-    <div class="container" id="question-1">
-      <div class="q-num"></div>
-      <div class="question"></div>
-      <div class="options"></div>
-    </div>
-    <footer>
-      <div class="next-button"></div>
-    </footer>
+    <!-- First question completted and commented out for ease of debugging multiple questions -->
+    <section class="main-display">
+      <div class="container" id="question-1">
+        <div class="q-num"></div>
+        <div class="question"></div>
+        <div class="options"></div>
+      </div>
+      <footer>
+        <div class="next-button"></div>
+      </footer>
+    </section>
     <script src="./assets/script.js"></script>
   </body>
 </html>

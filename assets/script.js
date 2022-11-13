@@ -1,7 +1,10 @@
 var startQuizButton = document.querySelector(".start-quiz");
-var introductionBox = document.querySelector(".introduction-page");
+var introductionPage = document.querySelector(".introduction-page");
+var introductionBox = document.querySelector(".intruduction-box");
+var disableQuizScreen = document.querySelector(".main-display");
 var scoreTrack = document.querySelector(".header-score");
 var timerTrack = document.querySelector(".header-time");
+var optionList = document.querySelector(".options");
 
 var nextButton = document.querySelector(".next-button");
 
@@ -9,9 +12,13 @@ var timeRemaining = document.getElementById("interval").innerHTML;
 
 var questionCount = 0;
 
+var scoreCount = 0;
+var finalScoreCount = 0;
+
 // Instead creating list with all values to pull from
 var questions = [
     {
+        points: 10,
         num: 1,
         question: "Which is one of the starter Pokemon you can chose as your partner from Generation 1?",
         answer: "Charmander",
@@ -21,6 +28,7 @@ var questions = [
             "Eevee"
         ]
     }, {
+        points: 10,
         num: 2,
         question: "Which Pokemon type is most effective against a Flying Pokemon?",
         answer: "Electric",
@@ -30,6 +38,7 @@ var questions = [
             "Electric"
         ]
     }, {
+        points: 15,
         num: 3,
         question: "Who is the lead protagonist in the Pokemon Anime?",
         answer: "Ash Ketchum",
@@ -39,6 +48,7 @@ var questions = [
             "Pikachu"
         ]
     }, {
+        points: 20,
         num: 4,
         question: "What is the name of the first ever Pokemon Game released in 1996?",
         answer: "Pokemon Red & Blue",
@@ -48,6 +58,7 @@ var questions = [
             "Pokemon FireRed & LeafGreen"
         ]
     }, {
+        points: 25,
         num: 5,
         question: "Finish the lyrics: 'I wanna be the very best, like no one ever was. To catch them is my real test...'?",
         answer: "To train them is my cause!",
@@ -65,7 +76,7 @@ var displayQuestions = function (index) {
     var qText = document.querySelector(".question");
     var qNum = document.querySelector(".q-num");
     var nextBox = document.querySelector(".next-button");
-    var optionList = document.querySelector(".options");
+    
 
     // Setting the attribute to match the styling I am looking for as it appears
     qNum.setAttribute("style", "font-weight:bold; font-size:32px");
@@ -98,14 +109,25 @@ var displayQuestions = function (index) {
     }
 }
 
+// This checks the user answer and compares it to the correct answer
+// We use classList to directly inject a class id used in the CSS styling
 var userOption = function(answer) {
     var userAnswer = answer.textContent;
     var correctAnswer = questions[questionCount].answer;
-    
+
     if (userAnswer == correctAnswer) {
-        console.log("correct");
+        scoreCount += questions[questionCount].points;
+        scoreTrack.textContent = "Score: " + scoreCount;
+        finalScoreCount = scoreCount;
+        answer.classList.add("correct");
     } else {
-        console.log("incorrect");
+        answer.classList.add("incorrect");
+        timeRemaining-= 10;
+    }
+
+    // All options need to be disabled once a user picks one
+    for (i = 0; i < optionList.children.length; i++) {
+        optionList.children[i].classList.add("disabled");
     }
 }
 
@@ -118,20 +140,62 @@ startQuizButton.addEventListener("click", function () {
         } else {
             clearInterval(timerInterval);
             timerTrack.innerHTML = "Times Up!";
+            finalScreen();
         }
     }, 1000);
     
-    introductionBox.setAttribute("style", "display:none");
+    // Removes the introduction box and begins to display the quiz prompts
+    startQuizButton.setAttribute("style", "display:none;");
     displayQuestions(questionCount);
-});
+    
+    // Next button being clicked
+    nextButton.addEventListener("click", function() {
+        if (questionCount < questions.length -1) {
+            questionCount++;
+            displayQuestions(questionCount);
+        } else {
+            finalScreen();
+            
+        }
+    });
+    
+    // Displays the final screen
+    // This includes removing the quiz screen and allowing the final page to show
+    var finalScreen = function() {
+        var finalScreenHeader = document.querySelector(".introduction-box li");
+        var finalScreenBody = document.querySelector(".firstBullet");
+        var disableBullet2 = document.querySelector(".secondBullet");
+        var disableBullet3 = document.querySelector(".thirdBullet");
+        var endForm = document.querySelector(".endForm");
 
-// Next button being clicked
-nextButton.addEventListener("click", function() {
-    if (questionCount < questions.length -1) {
-        questionCount++;
-        displayQuestions(questionCount);
-    } else {
-        console.log("Finshed quiz");
+        var newForm = document.createElement("form");
+        newForm.setAttribute("method", "post")
+        newForm.setAttribute("action", "submit.php")
+        
+        var inputEl = document.createElement("input");
+        inputEl.setAttribute("type", "text");
+        inputEl.setAttribute("name", "initials");
+
+        var submitEl = document.createElement("input");
+        submitEl.setAttribute("type", "submit");
+        submitEl.setAttribute("value", "Submit")
+
+
+        disableQuizScreen.setAttribute("style", "display:none;");
+        disableBullet2.setAttribute("style", "display:none;");
+        disableBullet3.setAttribute("style", "display:none;");
+        endForm.setAttribute("style", "display:contents;")
+
+
+        finalScreenHeader.textContent = "Quiz Over!";
+        finalScreenBody.textContent = "Your final score is: " + finalScoreCount;
+
+        clearInterval(timerInterval);
+
+        // document.getElementById("introduction-box").appendChild(newForm);   
+        submitEl.appendChild(newForm);
+        inputEl.appendChild(newForm);
+        introductionPage.appendChild(newForm);
     }
-});
 
+});
