@@ -8,7 +8,7 @@ body {
 }
 
 .introduction-page {
-  display: none;  
+  /* display: none;   */
 }
 
 .headerInfo {
@@ -18,7 +18,8 @@ body {
 }
 
 .score,
-.time {
+.time,
+.next {
     border-radius: 15px;
     padding: 10px;
     background-color: #eea29a;
@@ -26,7 +27,7 @@ body {
 
 .introduction-box,
 .start-quiz,
-.container{
+.container {
     background-color:#eea29a;
     border-radius: 15px;
     width: 50%;
@@ -49,7 +50,7 @@ body {
     border-style: solid;
 }
 
-.question-container div {
+.options div {
     background-color: white;
     border-radius: 15px;
     border-style: solid;
@@ -58,15 +59,19 @@ body {
     position: relative;
     left: 25%;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 10px; 
 }
 
-.question-container div:hover {
+.options div:hover {
     border-width: 3px;
     border-style: solid;
     border-color: black;
 }
 
-#question-1 {
-    display: none;
+.next-button {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: 46.8%;
+    margin-bottom: 14%;
 }
